@@ -19,5 +19,4 @@ CI에는 CircleCI를 사용하며 배포에는 Github Action를 사용한다.
 
 ## Reference
 1. Best Practices for Unit Testing in Kotlin, https://phauer.com/2018/best-practices-unit-testing-kotlin/
-2. 
 
