@@ -1,4 +1,4 @@
-package com.example.springkotlintemplate
+package CoverageTestCode
 
 interface ArithmeticOperator {
     fun plus(a:Int,b:Int): Int

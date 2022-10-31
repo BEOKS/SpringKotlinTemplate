@@ -1,11 +1,12 @@
 package com.example.springkotlintemplate
 
+import CoverageTestCode.ArithmeticOperator
+import CoverageTestCode.TestArithmeticOperator
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
-import org.springframework.boot.test.context.SpringBootTest
 
 class ArithmeticOperatorTest: DescribeSpec({
-    val arithmeticOperator: ArithmeticOperator=TestArithmeticOperator()
+    val arithmeticOperator: ArithmeticOperator = TestArithmeticOperator()
 
     context("arithmetic logic"){
         it("plus operation"){
