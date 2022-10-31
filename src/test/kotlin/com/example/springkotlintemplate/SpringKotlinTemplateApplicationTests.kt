@@ -1,13 +1,9 @@
 package com.example.springkotlintemplate
 
-import org.junit.jupiter.api.Test
+import io.kotest.core.spec.style.DescribeSpec
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class SpringKotlinTemplateApplicationTests {
+class SpringKotlinTemplateApplicationTests: DescribeSpec({
 
-    @Test
-    fun contextLoads() {
-    }
-
-}
+})
