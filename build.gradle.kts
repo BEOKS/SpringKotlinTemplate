@@ -41,17 +41,29 @@ tasks.withType<Test> {
 jacoco{
     toolVersion="0.8.8"
 }
+fun ConfigurableFileCollection.excludeSpringBootApplicationClass(){
+    setFrom(
+        files(files.map {
+            fileTree(it) {
+                exclude("com/example/springkotlintemplate/SpringKotlinTemplateApplication*")
+            }
+        })
+    )
+}
 tasks.jacocoTestReport {
     reports {
         html.required.set(true)
-        xml.required.set(true)
-        csv.required.set(true)
+        xml.required.set(false)
+        csv.required.set(false)
     }
+    classDirectories.excludeSpringBootApplicationClass()
 }
 tasks.jacocoTestCoverageVerification {
     violationRules {
         rule {
+            classDirectories.excludeSpringBootApplicationClass()
             element = "CLASS"
+
             limit {
                 counter = "BRANCH"
                 value = "COVEREDRATIO"
@@ -72,7 +84,5 @@ tasks.jacocoTestCoverageVerification {
                 maximum = "200".toBigDecimal()
             }
         }
-
     }
-
 }

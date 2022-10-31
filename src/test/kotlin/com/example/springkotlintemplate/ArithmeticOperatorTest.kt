@@ -4,9 +4,9 @@ import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
 import org.springframework.boot.test.context.SpringBootTest
 
-@SpringBootTest
-class SpringKotlinTemplateApplicationTests: DescribeSpec({
+class ArithmeticOperatorTest: DescribeSpec({
     val arithmeticOperator: ArithmeticOperator=TestArithmeticOperator()
+
     context("arithmetic logic"){
         it("plus operation"){
             arithmeticOperator.plus(1,1) shouldBe 2
