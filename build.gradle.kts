@@ -57,7 +57,7 @@ fun ConfigurableFileCollection.excludeSpringBootApplicationClass(){
 tasks.jacocoTestReport {
     reports {
         html.required.set(true)
-        xml.required.set(false)
+        xml.required.set(true)
         csv.required.set(false)
     }
     classDirectories.excludeSpringBootApplicationClass()
@@ -73,8 +73,6 @@ tasks.jacocoTestCoverageVerification {
                 value = "COVEREDRATIO"
                 minimum = "0.90".toBigDecimal()
             }
-
-            element = "CLASS"
 
             limit {
                 counter = "LINE"
