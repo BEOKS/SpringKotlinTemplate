@@ -37,7 +37,7 @@ class SpringRestDocsTest() {
                         parameterWithName("email").description("이메일")
                     ),
                     responseFields(
-                        fieldWithPath("email").description(email),
+                        fieldWithPath("email").description("이메일"),
                         fieldWithPath("name").description("이름"),
                         fieldWithPath("introduction").description("소개"),
                         fieldWithPath("pictureUrl").description("사진경로"),

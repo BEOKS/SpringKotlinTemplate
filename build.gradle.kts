@@ -123,9 +123,9 @@ tasks {
 
     register<Copy>("copyDocument") {
         dependsOn(asciidoctor)
-
         destinationDir = file(".")
         from(asciidoctor.get().outputDir) {
+            duplicatesStrategy=DuplicatesStrategy.INCLUDE
             into("src/main/resources/static/docs")
         }
     }
