@@ -122,8 +122,11 @@ jobs:
 마지막으로 코드 커버리지를 한눈에 파악하기 위한 뱃지를 등록할 수 있습니다.
 CodeCov 에서 현재 선택한 Repository 에서 Settings 메뉴에 들어가면 CodeCov Badge를 사용할 수 있습니다.
 ## 2.3 Spring Rest Docs
-API 문서를 자동화 하기 위해서 Spring Rest Docs를 이용합니다.
-Swagger의 경우 브라우저에서 API 테스팅이 바로 가능한 것이 매력적이지만, 2020년 8월 14일 이후 업데이트 되지 않아 Deprecated 상태이기 때문입니다. 
+API 문서를 자동화 하기 위해서 Spring Rest Docs를 이용합니다. 
+빌드 시, 테스트 코드를 기반으로 api-docs.html파일을 생성합니다. 생성된 파일은 ```src/main/resources/api-dcs.html```에 저장됩니다. README.md의 뱃지를 클릭하면 해당 문서로 이동할 수 있습니다. 
+> 🚧 Warn
+> 
+> 뱃지의 링크는 레포지토리명, 소유자 그리고 브랜치명이 포함되기 때문에 적절한 수정이 필요합니다.
 ## 2.4 CI/CD
 CI에는 CircleCI를 사용하며 배포에는 Github Action를 사용한다.
 ## 2.5 Convention
