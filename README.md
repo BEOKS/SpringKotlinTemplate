@@ -4,19 +4,18 @@
 새로운 Kotlin 기반의 Spring 프로젝트를 시작할 때 사용할 템플릿 레포지토리입니다.
 
 ## 1.Introduction
-새로운 프로젝트를 개발하고 관리하기 위해서는 테스트, CI/CD 등의 기능과 문서와 코드 컨벤션 등의 규칙을 정해야 합니다. 프로젝트를 개발할 때마다 이 요소들을 일일이 설정하는 것은 번거롭습니다. SpringKotlinTemplate은 이를 해결하기 위해 모범사례를 바탕으로 구성된 프로젝트 템플릿입니다. 
+새로운 프로젝트를 개발하고 관리하기 위해서는 테스트, CI/CD, 문서작성 그리고 코드 컨벤션 등 프로그래밍 이외의 작업이 굉장히 많습니다. 프로젝트를 개발할 때마다 이들을 일일이 설정, 자동화하는 것은 매우 번거롭습니다. SpringKotlinTemplate은 이를 해결하기 위해 모범사례를 바탕으로 구성된 프로젝트 템플릿입니다. 새로운 프로젝트를 시작할 때 이 템플릿을 이용해서 개발에 필요한 설정과정을 생략해서 빠르게 개발을 진행할 수 있습니다.
 
 ## 2.Feature
 ### 2.1 Test
 이 프로젝트에서는 Kotest와 mockk를 이용합니다.
 ### 2.2 Test Coverage
 테스트 커버리지를 측정하기 위해서 JaCoCo(Java Code Coverage)를 사용합니다. 
-GitHub 을 사용하는 경우 JaCoCo Badge Create Github Action을 통해서 뱃지를 생성해 활용할 수 있습니다.
 새로운 PR을 생성하고 커밋이 갱신될때마다 테스트와 테스트 커버리지 체크가 수행됩니다. 
 커버리지 체크가 수행된 후 README.md 의 커버리지 뱃지가 업데이트되며 클릭 시 
 커버리지 Report에 접근할 수 있습니다.
 #### 2.2.1 Exclude Test Code
-SpringBootApplication 과 같이 테스트가 필요하지 않는 코드도 테스트 커버리지의 대상이 될 수 있습니다. 이를 차단하기 위해서 ```build.gradle.kts```에서 테스크 커버리지의 예외를 지정할 수 있습니다.
+```SpringBootApplication``` 와 같이 테스트가 필요하지 않는 코드도 테스트 커버리지의 대상이 될 수 있습니다. 이를 차단하기 위해서 ```build.gradle.kts```에서 테스크 커버리지의 예외를 지정할 수 있습니다.
 ```kotlin
 fun ConfigurableFileCollection.excludeSpringBootApplicationClass(){
     setFrom(
@@ -64,7 +63,7 @@ CodeCov 홈페이지에서 GitHub 계정을 통해 가입을 진행합니다.
 3. Github Action 설정
 
 PR을 생성하거나 브랜치에 푸시가 진행될때 마다 자동으로 코드 커버리지 테스트와 리포트 업데이트를 위한 Github Action을 설정합니다.
-```
+```yaml
 name: Spring/Kotlin Coverage Test on main
 
 on:
