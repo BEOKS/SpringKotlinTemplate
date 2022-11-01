@@ -13,10 +13,6 @@
     * [2.3 Spring Rest Docs](#23-spring-rest-docs)
     * [2.4 CI/CD](#24-ci-cd)
     * [2.5 Convention](#25-convention)
-- [3. More Feature](#3-more-feature)
-    * [2.1 Spring Doc Docs with GitHub Page](#21-spring-doc-docs-with-github-page)
-    * [2.2 Test Coverage Report Visualization](#22-test-coverage-report-visualization)
-    * [Reference](#reference)
 
 
 # 1.Introduction
