@@ -6,15 +6,19 @@
 # Contents
 - [1.Introduction](#1introduction)
 - [2. Usage](#2-usage)
+  * [2.1 Test Coverage Verification](#21-test-coverage-verification)
+  * [2.2 Test Code Exclusion](#22-test-code-exclusion)
+  * [2.3 Private Repository](#23-private-repository)
+  * [2.4 Spring Rest Docs Badge](#24-spring-rest-docs-badge)
 - [3.Feature](#3feature)
-    * [3.1 Test](#31-test)
-    * [3.2 Test Coverage](#32-test-coverage)
-        + [3.2.1 Exclude Test Code](#321-exclude-test-code)
-        + [3.2.2 Test Coverage Report](#322-test-coverage-report)
-        + [3.2.3 Code Coverage Badge](#323-code-coverage-badge)
-    * [3.3 Spring Rest Docs](#33-spring-rest-docs)
-    * [3.4 CI/CD](#34-ci-cd)
-    * [3.5 Convention](#35-convention)
+  * [3.1 Test](#31-test)
+  * [3.2 Test Coverage](#32-test-coverage)
+    + [3.2.1 Exclude Test Code](#321-exclude-test-code)
+    + [3.2.2 Test Coverage Report](#322-test-coverage-report)
+    + [3.2.3 Code Coverage Badge](#323-code-coverage-badge)
+  * [3.3 Spring Rest Docs](#33-spring-rest-docs)
+  * [3.4 CI/CD](#34-ci-cd)
+  * [3.5 Convention](#35-convention)
 # 1.Introduction
 새로운 프로젝트를 개발하고 관리하기 위해서는 테스트, CI/CD, 문서작성 그리고 코드 컨벤션 등 프로그래밍 이외의 작업이 굉장히 많습니다. 프로젝트를 개발할 때마다 이들을 일일이 설정, 자동화하는 것은 매우 번거롭습니다. SpringKotlinTemplate은 이를 해결하기 위해 모범사례를 바탕으로 구성된 프로젝트 템플릿입니다. 새로운 프로젝트를 시작할 때 이 템플릿을 이용해서 개발에 필요한 설정과정을 생략해서 빠르게 개발을 진행할 수 있습니다.
 # 2. Usage
