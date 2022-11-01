@@ -134,6 +134,7 @@ tasks {
         dependsOn(asciidoctor)
 
         from(asciidoctor.get().outputDir) {
+            duplicatesStrategy=DuplicatesStrategy.INCLUDE
             into("BOOT-INF/classes/static/docs")
         }
     }
