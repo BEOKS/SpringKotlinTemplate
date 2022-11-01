@@ -1,5 +1,6 @@
 # SpringKotlinTemplate
 [![codecov](https://codecov.io/gh/BEOKS/SpringKotlinTemplate/branch/main/graph/badge.svg?token=75JRE4VYJ1)](https://codecov.io/gh/BEOKS/SpringKotlinTemplate)
+[api page](https://htmlpreview.github.io/?https://github.com/BEOKS/SpringKotlinTemplate/tree/main/src/main/resources/static/api-dcs.html)
 
 새로운 Kotlin 기반의 Spring 프로젝트를 시작할 때 사용할 템플릿 레포지토리입니다.
 # Contents

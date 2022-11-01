@@ -1,9 +1,9 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     id("org.springframework.boot") version "2.7.4"
     id("io.spring.dependency-management") version "1.0.14.RELEASE"
     id("jacoco")
+    id("org.asciidoctor.jvm.convert") version "3.3.2"
     kotlin("jvm") version "1.6.21"
     kotlin("plugin.spring") version "1.6.21"
 }
@@ -15,10 +15,14 @@ repositories {
     mavenCentral()
 }
 
+
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("org.springframework.boot:spring-boot-starter-web:2.7.5")
+    testImplementation("org.springframework.restdocs:spring-restdocs-asciidoctor:2.0.6.RELEASE")
+    testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc:2.0.6.RELEASE")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.kotest:kotest-runner-junit5:5.5.2")
     testImplementation("io.kotest:kotest-assertions-core:5.5.2")
@@ -53,7 +57,7 @@ fun ConfigurableFileCollection.excludeSpringBootApplicationClass(){
 tasks.jacocoTestReport {
     reports {
         html.required.set(true)
-        xml.required.set(true) //For CodeCoverage
+        xml.required.set(false)
         csv.required.set(false)
     }
     classDirectories.excludeSpringBootApplicationClass()
@@ -83,6 +87,54 @@ tasks.jacocoTestCoverageVerification {
                 value = "TOTALCOUNT"
                 maximum = "200".toBigDecimal()
             }
+        }
+    }
+}
+//Spring Rest Docs
+tasks {
+    val snippetsDir = file("$buildDir/generated-snippets")
+
+    clean {
+        delete("src/main/resources/static/docs")
+    }
+
+    test {
+        useJUnitPlatform()
+        systemProperty("org.springframework.restdocs.outputDir", snippetsDir)
+        outputs.dir(snippetsDir)
+    }
+
+    build {
+        dependsOn("copyDocument")
+    }
+
+    asciidoctor {
+        dependsOn(test)
+
+        attributes(
+            mapOf("snippets" to snippetsDir)
+        )
+        inputs.dir(snippetsDir)
+
+        doFirst {
+            delete("src/main/resources/static/docs")
+        }
+    }
+
+    register<Copy>("copyDocument") {
+        dependsOn(asciidoctor)
+
+        destinationDir = file(".")
+        from(asciidoctor.get().outputDir) {
+            into("src/main/resources/static/docs")
+        }
+    }
+
+    bootJar {
+        dependsOn(asciidoctor)
+
+        from(asciidoctor.get().outputDir) {
+            into("BOOT-INF/classes/static/docs")
         }
     }
 }
