@@ -8,7 +8,39 @@
 ### 2.1 Test
 이 프로젝트에서는 Kotest와 mockk를 이용합니다.
 ### 2.2 Test Coverage
-테스트 커버리지를 측정하기 위해서 JaCoCo(Java Code Coverage)를 사용합니다. GitHub을 사용하는 경우 JaCOCO Badge Create Github Action을 통해서 뱃지를 생성해 활용할 수 있습니다.
+테스트 커버리지를 측정하기 위해서 JaCoCo(Java Code Coverage)를 사용합니다. GitHub 을 사용하는 경우 JaCoCo Badge Create Github Action을 통해서 뱃지를 생성해 활용할 수 있습니다.
+새로운 PR을 생성하고 커밋이 갱신될때마다 테스트와 테스트 커버리지 체크가 수행됩니다. 커버리지 체크가 수행된 후 README.md 의 커버리지 뱃지가 업데이트되며 클릭 시 커버리지 Report에 접근할 수 있습니다.
+#### 2.2.1 Exclude Test Code
+SpringBootApplication 과 같이 테스트가 필요하지 않는 코드도 테스트 커버리지의 대상이 될 수 있습니다. 이를 차단하기 위해서 ```build.gradle.kts```에서 테스크 커버리지의 예외를 지정할 수 있습니다.
+```kotlin
+fun ConfigurableFileCollection.excludeSpringBootApplicationClass(){
+    setFrom(
+        files(files.map {
+            fileTree(it) {
+                exclude("com/example/springkotlintemplate/SpringKotlinTemplateApplication*")
+            }
+        })
+    )
+}
+tasks.jacocoTestReport {
+    reports {
+        //...
+    }
+    classDirectories.excludeSpringBootApplicationClass()
+}
+tasks.jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            classDirectories.excludeSpringBootApplicationClass()
+            element = "CLASS"
+            //...
+        }
+    }
+}
+```
+#### 2.2.2 Test Coverage Badge
+
+
 ### 2.3 Spring Rest Docs
 API 문서를 자동화 하기 위해서 Spring Rest Docs를 이용합니다.
 Swagger의 경우 브라우저에서 API 테스팅이 바로 가능한 것이 매력적이지만, 2020년 8월 14일 이후 업데이트 되지 않아 Deprecated 상태이기 때문입니다. 
