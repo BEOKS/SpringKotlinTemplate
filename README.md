@@ -59,7 +59,7 @@ CodeCov -> Setting 에서 발급 가능한 토클을 Github Secret 에 등록한
 ```
 ## 2.4 Spring Rest Docs Badge
 현재 레포지토리에선 Spring Rest Docs Badge 를 클릭해 문서를 확인할 수 있습니다. 하지만, 해당 뱃지에
- 저장된 링크는 소유자, 레포지토리이름 그리고 브랜치이름 정보가 포함되어 있습니다. 따라서 이를 새로운 레포지토리를
+ 저장된 링크는 소유자, 레포지토리이름 그리고 브랜치이름 정보가 포함되어 있습니다. 따라서 새로운 레포지토리를
 생성할 때는 이를 수정해주어야 합니다. 
 ```yaml
 https://htmlpreview.github.io/?https://github.com/{소유자명}/{레포지토리명}/blob/{브랜치명}/src/main/resources/static/docs/api-dcs.html
