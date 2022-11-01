@@ -41,9 +41,9 @@ jobs:
     - name: Create Test Coverage Report
       run: ./gradlew jacocoTestReport
       
-    - name: Generate JaCoCo Badge
-      uses: cicirello/jacoco-badge-generator@v2
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3.1.1
       with:
-        generate-branches-badge: true
-        jacoco-csv-file: build/reports/jacoco/test/jacocoTestReport.csv
+        file: ./build/reports/jacoco/test/jacocoTestReport.xml
+      
 
