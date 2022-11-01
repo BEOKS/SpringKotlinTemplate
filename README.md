@@ -8,10 +8,10 @@
 ### 2.1 Test
 이 프로젝트에서는 Kotest와 mockk를 이용합니다.
 ### 2.2 Test Coverage
-테스트 커버리지를 측정하기 위해서 JaCoCo(Java Code Coverage)를 사용합니다. 
-### 2.3 Spring Doc
-API 문서를 자동화 하기 위해서 Spring Doc를 이용합니다.
-Spring Fox의 경우 브라우저에서 API 테스팅이 바로 가능한 것이 매력적이지만, 2020년 8월 14일 이후 업데이트 되지 않아 Deprecated 상태이기 때문입니다. 
+테스트 커버리지를 측정하기 위해서 JaCoCo(Java Code Coverage)를 사용합니다. GitHub을 사용하는 경우 JaCOCO Badge Create Github Action을 통해서 뱃지를 생성해 활용할 수 있습니다.
+### 2.3 Spring Rest Docs
+API 문서를 자동화 하기 위해서 Spring Rest Docs를 이용합니다.
+Swagger의 경우 브라우저에서 API 테스팅이 바로 가능한 것이 매력적이지만, 2020년 8월 14일 이후 업데이트 되지 않아 Deprecated 상태이기 때문입니다. 
 ### 2.4 CI/CD
 CI에는 CircleCI를 사용하며 배포에는 Github Action를 사용한다.
 ### 2.5 Convention

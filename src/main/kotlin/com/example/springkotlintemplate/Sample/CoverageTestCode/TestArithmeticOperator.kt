@@ -1,6 +1,6 @@
-package CoverageTestCode
+package com.example.springkotlintemplate.Sample.CoverageTestCode
 
-import CoverageTestCode.ArithmeticOperator
+import com.example.springkotlintemplate.Sample.CoverageTestCode.ArithmeticOperator
 
 class TestArithmeticOperator : ArithmeticOperator {
     override fun plus(a:Int, b:Int): Int{

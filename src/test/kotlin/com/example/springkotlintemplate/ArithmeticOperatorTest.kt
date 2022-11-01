@@ -1,7 +1,7 @@
 package com.example.springkotlintemplate
 
-import CoverageTestCode.ArithmeticOperator
-import CoverageTestCode.TestArithmeticOperator
+import com.example.springkotlintemplate.Sample.CoverageTestCode.ArithmeticOperator
+import com.example.springkotlintemplate.Sample.CoverageTestCode.TestArithmeticOperator
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
 
