@@ -5,29 +5,71 @@
 새로운 Kotlin 기반의 Spring 프로젝트를 시작할 때 사용할 템플릿 레포지토리입니다.
 # Contents
 - [1.Introduction](#1introduction)
-- [2.Feature](#2feature)
-    * [2.1 Test](#21-test)
-    * [2.2 Test Coverage](#22-test-coverage)
-        + [2.2.1 Exclude Test Code](#221-exclude-test-code)
-        + [2.2.2 Test Coverage Report](#222-test-coverage-report)
-        + [2.4 Code Coverage Badge](#24-code-coverage-badge)
-    * [2.3 Spring Rest Docs](#23-spring-rest-docs)
-    * [2.4 CI/CD](#24-ci-cd)
-    * [2.5 Convention](#25-convention)
-
-
+- [2. Usage](#2-usage)
+- [3.Feature](#3feature)
+    * [3.1 Test](#31-test)
+    * [3.2 Test Coverage](#32-test-coverage)
+        + [3.2.1 Exclude Test Code](#321-exclude-test-code)
+        + [3.2.2 Test Coverage Report](#322-test-coverage-report)
+        + [3.2.3 Code Coverage Badge](#323-code-coverage-badge)
+    * [3.3 Spring Rest Docs](#33-spring-rest-docs)
+    * [3.4 CI/CD](#34-ci-cd)
+    * [3.5 Convention](#35-convention)
 # 1.Introduction
 새로운 프로젝트를 개발하고 관리하기 위해서는 테스트, CI/CD, 문서작성 그리고 코드 컨벤션 등 프로그래밍 이외의 작업이 굉장히 많습니다. 프로젝트를 개발할 때마다 이들을 일일이 설정, 자동화하는 것은 매우 번거롭습니다. SpringKotlinTemplate은 이를 해결하기 위해 모범사례를 바탕으로 구성된 프로젝트 템플릿입니다. 새로운 프로젝트를 시작할 때 이 템플릿을 이용해서 개발에 필요한 설정과정을 생략해서 빠르게 개발을 진행할 수 있습니다.
+# 2. Usage
+이 템플릿은 예시 설정으로 구성되어 있습니다. 따라서 자신의 프로젝트에 맞는 설정이 필요합니다.
+## 2.1 Test Coverage Verification
+[3.2 Test Coverage](#32-test-coverage) 에서는 단순히 테스트 커버리지만 측정하는 것이 아니라 
+코드 길이, 최소 커버리지 등의 확인 기능도 구현되어있습니다. 이를 수정하기 위해서는 ```build.gradle.kts```에서
+```violationRules``` 옵션을 수정해야합니다. 아래는 현재 라인 길이를 제한하는 설정 예시입니다. [JacocoViolationRule](https://docs.gradle.org/current/javadoc/org/gradle/testing/jacoco/tasks/rules/JacocoViolationRule.html)을
+참고해서 다양한 규칙을 생성할 수 있습니다.
+```kotlin
+tasks.jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            element = "CLASS"
+            limit {
+                counter = "LINE"
+                value = "TOTALCOUNT"
+                maximum = "200".toBigDecimal()
+            }
+        }
+    }
+}
+```
+## 2.2 Test Code Exclusion
+테스트가 필요하지 않는 코드 설정은 이 [설정](#321-exclude-test-code)을 참고해주세요.
+## 2.3 Private Repository
+만약 개인 레포지토리에 이 템플릿을 사용하는 경우 CodeCov 를 사용하기 위해서는 토큰을 설정해야합니다.
+CodeCov -> Setting 에서 발급 가능한 토클을 Github Secret 에 등록한 후 아래와 같이 [CI 워크 플로우](.github/workflows/test_coverage_update.yml)에
+토큰 값을 추가해주세요. 공개된 레포지토리의 경우 CodeCov에서 Github을 이용해 로그인만하면 레포지토리를 연결할 수 있습니다.
+```yaml
+...
+- name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3.1.1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        file: ./build/reports/jacoco/test/jacocoTestReport.xml
+...
+```
+## 2.4 Spring Rest Docs Badge
+현재 레포지토리에선 Spring Rest Docs Badge 를 클릭해 문서를 확인할 수 있습니다. 하지만, 해당 뱃지에
+ 저장된 링크는 소유자, 레포지토리이름 그리고 브랜치이름 정보가 포함되어 있습니다. 따라서 이를 새로운 레포지토리를
+생성할 때는 이를 수정해주어야 합니다. 
+```yaml
+https://htmlpreview.github.io/?https://github.com/{소유자명}/{레포지토리명}/blob/{브랜치명}/src/main/resources/static/docs/api-dcs.html
+```
 
-# 2.Feature
-## 2.1 Test
+# 3.Feature
+## 3.1 Test
 이 프로젝트에서는 Kotest와 mockk를 이용합니다.
-## 2.2 Test Coverage
+## 3.2 Test Coverage
 테스트 커버리지를 측정하기 위해서 JaCoCo(Java Code Coverage)를 사용합니다. 
 새로운 PR을 생성하고 커밋이 갱신될때마다 테스트와 테스트 커버리지 체크가 수행됩니다. 
 커버리지 체크가 수행된 후 README.md 의 커버리지 뱃지가 업데이트되며 클릭 시 
 커버리지 Report에 접근할 수 있습니다.
-### 2.2.1 Exclude Test Code
+### 3.2.1 Exclude Test Code
 ```SpringBootApplication``` 와 같이 테스트가 필요하지 않는 코드도 테스트 커버리지의 대상이 될 수 있습니다. 이를 차단하기 위해서 ```build.gradle.kts```에서 테스크 커버리지의 예외를 지정할 수 있습니다.
 ```kotlin
 fun ConfigurableFileCollection.excludeSpringBootApplicationClass(){
@@ -55,7 +97,7 @@ tasks.jacocoTestCoverageVerification {
     }
 }
 ```
-### 2.2.2 Test Coverage Report
+### 3.2.2 Test Coverage Report
 [CodeCov](https://about.codecov.io/)를 이용해서 커버리지 리포트를 확인할 수 있습니다. 
 Github Action 을 활용해서 CI를 구축하여 자동으로 커버리티 리포트를 생성해 지속적인 업데이트가 가능합니다. 
 1. CodeCov 가입
@@ -118,26 +160,17 @@ jobs:
       with:
         file: ./build/reports/jacoco/test/jacocoTestReport.xml
 ```
-### 2.4 Code Coverage Badge
+### 3.2.3 Code Coverage Badge
 마지막으로 코드 커버리지를 한눈에 파악하기 위한 뱃지를 등록할 수 있습니다.
 CodeCov 에서 현재 선택한 Repository 에서 Settings 메뉴에 들어가면 CodeCov Badge를 사용할 수 있습니다.
-## 2.3 Spring Rest Docs
+## 3.3 Spring Rest Docs
 API 문서를 자동화 하기 위해서 Spring Rest Docs를 이용합니다. 
 빌드 시, 테스트 코드를 기반으로 api-docs.html파일을 생성합니다. 생성된 파일은 ```src/main/resources/api-dcs.html```에 저장됩니다. README.md의 뱃지를 클릭하면 해당 문서로 이동할 수 있습니다. 
 > 🚧 Warn
 > 
 > 뱃지의 링크는 레포지토리명, 소유자 그리고 브랜치명이 포함되기 때문에 적절한 수정이 필요합니다.
-## 2.4 CI/CD
+## 3.4 CI/CD
 CI에는 CircleCI를 사용하며 배포에는 Github Action를 사용한다.
-## 2.5 Convention
+## 3.5 Convention
 코틀린 공식 사이트에서 제공하는 컨벤션을 활용합니다. 이 컨벤션은 Intellij 를 사용할 경우 Default 로 적용되어 있습니다.
-# 3. More Feature
-## 2.1 Spring Doc Docs with GitHub Page
-Spring Doc 를 통해서 생성된 웹 페이지 문서를 GitHub Page 를 통해 브라우저에서 바로 확인할 수 있습니다.
-## 2.2 Test Coverage Report Visualization
-현재 테스트 커버리지를 Report 결과를 GitHub Page 를 통해 브라우저에서 바로 확인할 수 있습니다.
-
-
-## Reference
-1. Best Practices for Unit Testing in Kotlin, https://phauer.com/2018/best-practices-unit-testing-kotlin/
 
