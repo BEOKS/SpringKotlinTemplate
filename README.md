@@ -2,6 +2,7 @@
 [![codecov](https://codecov.io/gh/BEOKS/SpringKotlinTemplate/branch/main/graph/badge.svg?token=75JRE4VYJ1)](https://codecov.io/gh/BEOKS/SpringKotlinTemplate)
 [![api page](https://img.shields.io/badge/Spring_Rest_Docs-main-007396?logo=Read+the+Docs&logoColor=white)](https://htmlpreview.github.io/?https://github.com/BEOKS/SpringKotlinTemplate/blob/main/src/main/resources/static/docs/api-dcs.html)
 
+
 새로운 Kotlin 기반의 Spring 프로젝트를 시작할 때 사용할 템플릿 레포지토리입니다.
 # Contents
 - [1.Introduction](#1introduction)
@@ -21,6 +22,11 @@
   * [3.5 Convention](#35-convention)
 # 1.Introduction
 새로운 프로젝트를 개발하고 관리하기 위해서는 테스트, 커버리지 , 문서작성 그리고 코드 컨벤션 등 프로그래밍 이외의 작업이 굉장히 많습니다. 프로젝트를 개발할 때마다 이들을 일일이 설정, 자동화하는 것은 매우 번거롭습니다. SpringKotlinTemplate은 이를 해결하기 위해 모범사례를 바탕으로 구성된 프로젝트 템플릿입니다. 새로운 프로젝트를 시작할 때 이 템플릿을 이용해서 개발에 필요한 설정과정을 생략해서 빠르게 개발을 진행할 수 있습니다.
+
+> ❕ Continuous Delivery를 구성하지 않은 이유
+>
+> Continuous Delivery 는 각자의 환경에 따라 굉장히 다양하게 나뉩니다. 배포한경이 클라우드 인지 온프레미스인지, 클라우드에서도 AWS, Azure, CloudFare 등 다양한 서비스로 나뉘게 되고 배포 방법도 SSH, AWS CodeDeploy, CircleCI 등 다양한 방법이 존재합니다. 그리고 배포파일 또한 JAR, WAR, Docker image 등 다양한 형식으로 나뉘기 때문에 템플릿에서 일반화된 구성이 어렵습니다. 대신, 현재 대부분의 서비스가 도커 이미지를 통해 배포되고 있는 만큼 여기에는 도커 이미지 빌드 구성이 적용되어 있습니다.
+
 # 2. Usage
 이 템플릿은 예시 설정으로 구성되어 있습니다. 따라서 자신의 프로젝트에 맞는 설정이 필요합니다.
 ## 2.1 Test Coverage Verification
